@@ -24,7 +24,7 @@ jobs:
       - name: SonarQube Scan
         uses: sonarsource/sonarcloud-github-action@v1
         with:
-          organization: sangeethamkrishnan2000-cpu   # Replace with your SonarCloud organization name
+          organization: Sangeetha M   # Replace with your SonarCloud organization name
           projectKey: sangeethamkrishnan2000-cpu                  # Replace with your SonarQube project key
           projectName: gees-workout-v1                # Replace with your SonarQube project name
         env:
