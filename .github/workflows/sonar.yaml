@@ -9,21 +9,18 @@ on:
       - '**'
 
 jobs:
-  sonarQubeScan:
-    name: SonarCloud Analysis
+  sonar:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # Required for SonarCloud
+          fetch-depth: 0
 
-      - name: Setup JDK 17
-        uses: actions/setup-java@v4
+      - uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: '17'
+          distribution: temurin
+          java-version: 17
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v2
@@ -31,5 +28,7 @@ jobs:
           args: >
             -Dsonar.organization=sangeetham
             -Dsonar.projectKey=sangeethamkrishnan2000-cpu
+            -Dsonar.host.url=https://sonarcloud.io
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          
