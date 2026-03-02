@@ -1,30 +1,35 @@
-name: SonarQube Scan
+name: SonarCloud Scan
 
 on:
   push:
     branches:
-      - master  # Or the default branch you're using
+      - master
   pull_request:
     branches:
-      - '*/*'  # Or the branch you're using for PRs
+      - '**'
 
 jobs:
   sonarQubeScan:
+    name: SonarCloud Analysis
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v2
-      
-      - name: Setup JDK 17
-        uses: actions/setup-java@v2
+        uses: actions/checkout@v4
         with:
-          java-version: 17  
+          fetch-depth: 0   # Required for SonarCloud
 
-      - name: SonarQube Scan
-        uses: sonarsource/sonarcloud-github-action@v1
+      - name: Setup JDK 17
+        uses: actions/setup-java@v4
         with:
-          organization: Sangeetha M   # Replace with your SonarCloud organization name
-          projectKey: sangeethamkrishnan2000-cpu                  # Replace with your SonarQube project key
-          projectName: gees-workout-v1                # Replace with your SonarQube project name
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarqube-scan-action@v2
+        with:
+          args: >
+            -Dsonar.organization=sangeetham
+            -Dsonar.projectKey=sangeethamkrishnan2000-cpu
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
