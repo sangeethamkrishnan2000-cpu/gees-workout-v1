@@ -27,8 +27,7 @@ jobs:
         with:
           args: >
             -Dsonar.organization=sangeetham
-            -Dsonar.projectKey=sangeethamkrishnan2000-cpu
+            -Dsonar.projectKey=sangeethamkrishnan2000-cpu-azey8@github
             -Dsonar.host.url=https://sonarcloud.io
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          
